@@ -1,0 +1,6 @@
+.idea
+.envrc
+.terraform
+terraform.tfstate*
+.output
+result-*
