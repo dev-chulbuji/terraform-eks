@@ -47,41 +47,6 @@ variable "cluster_log_kms_key_id" {
   type        = string
 }
 
-variable "worker_instance_ami" {
-  description = "worker node instance ami"
-}
-
-variable "worker_instance_type" {
-  description = "worker node instance type"
-  default     = "t2.micro"
-}
-
-variable "worker_key_pair_name" {
-  description = "worker instance key pair"
-}
-
-variable "worker_ebs_volume_type" {
-  description = "worker instance ebs volume type"
-  default     = "gp2"
-}
-
-variable "worker_ebs_volume_size" {
-  description = "worker instance ebs volume size"
-  default     = "60"
-}
-
-variable "worker_autoscale_min" {
-  default = "1"
-}
-
-variable "worker_autoscale_max" {
-  default = "5"
-}
-
-variable "worker_autoscale_desired" {
-  default = "5"
-}
-
 variable "map_roles" {
   description = "Additional IAM roles to add to the aws-auth configmap."
   type        = list(map(string))
@@ -112,4 +77,26 @@ variable "cluster_delete_timeout" {
   description = "Timeout value when deleting the EKS cluster."
   type        = string
   default     = "15m"
+}
+
+variable "kubeconfig_name" {
+  default = ""
+}
+
+variable "kubeconfig_aws_authenticator_command" {
+  description = "Command to use to fetch AWS EKS credentials."
+  type        = string
+  default     = "aws-iam-authenticator"
+}
+
+variable "kubeconfig_aws_authenticator_additional_args" {
+  description = "Any additional arguments to pass to the authenticator such as the role to assume. e.g. [\"-r\", \"MyEksRole\"]."
+  type        = list(string)
+  default     = []
+}
+
+variable "kubeconfig_aws_authenticator_env_variables" {
+  description = "Environment variables that should be used when executing the authenticator. e.g. { AWS_PROFILE = \"eks\"}."
+  type        = map(string)
+  default     = {}
 }
