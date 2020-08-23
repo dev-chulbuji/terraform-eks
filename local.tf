@@ -6,7 +6,8 @@ locals {
     "subnet-0aa757ed15e430064"
   ]
 
-  cluster_name = "eks-dev"
+  cluster_name = "dj-cluster-dev"
+
 
   cluster_version               = "1.17"
   cluster_private_access        = true

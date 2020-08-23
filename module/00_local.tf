@@ -29,4 +29,7 @@ locals {
     },
     var.common_tags,
   )
+
+  wait_for_cluster_cmd         = "for i in `seq 1 60`; do wget --no-check-certificate -O - -q $ENDPOINT/healthz >/dev/null && exit 0 || true; sleep 5; done; echo TIMEOUT && exit 1"
+  wait_for_cluster_interpreter = ["/bin/sh", "-c"]
 }
