@@ -26,7 +26,7 @@ resource "aws_eks_node_group" "workers" {
 
     content {
       ec2_ssh_key               = remote_access.value["ec2_ssh_key"]
-      source_security_group_ids = remote_access.value["source_security_group_ids"]
+      source_security_group_ids = concat(remote_access.value["source_security_group_ids"], [aws_security_group.workers.id])
     }
   }
 
